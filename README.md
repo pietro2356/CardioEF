@@ -239,6 +239,18 @@ Durante l'esecuzione:
 - [ground_truth_generator.py](ground_truth_generator.py): Parsing dei file CSV e generazione maschere di riferimento.
 - [utils_video.py](utils_video.py): Estrazione frame da video AVI.
 
+## 📄 Dataset & Citazioni
+
+Questo progetto utilizza il dataset **EchoNet-Dynamic**, rilasciato da Stanford University.
+
+**Fonte Principale:**
+> Ouyang, D., He, B., Ghorbani, A., Yuan, N., Ebinger, J., Langlotz, C. P., ... & Zou, J. Y. (2020). Video-based AI for beat-to-beat assessment of cardiac function. *Nature*, 580(7802), 252-256.
+
+* **Project Page:** [https://echonet.github.io/dynamic/](https://echonet.github.io/dynamic/)
+* **GitHub Repository:** [https://github.com/echonet/dynamic](https://github.com/echonet/dynamic)
+
+*Il dataset è utilizzato esclusivamente a fini di ricerca e didattica accademica.*
+
 ## 📝 Autori
 Sviluppato per il corso di Tecnologie Multimediali.
 - Pietro Rocchio

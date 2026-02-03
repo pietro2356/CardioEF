@@ -1,3 +1,9 @@
+# -------------------------------------------------------------------------
+# Project: CardioEF
+# Dataset Source: EchoNet-Dynamic (Stanford University)
+# Reference: Ouyang et al. (2020). Video-based AI for beat-to-beat assessment of cardiac function. *Nature*, 580(7802), 252-256.
+# -------------------------------------------------------------------------
+
 import cv2
 import numpy as np
 import pandas as pd
