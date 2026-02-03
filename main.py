@@ -283,7 +283,7 @@ if __name__ == "__main__":
 
     print(f"[INFO] Caricato CSV con {len(df)} voci da {FILELIST_CSV}")
 
-    row = df.iloc[10022]
+    row = df.iloc[5]
     filename = row['FileName'] + ".avi"
 
     process_patient(filename)
