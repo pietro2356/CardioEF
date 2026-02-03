@@ -12,7 +12,7 @@ Il sistema è stato sviluppato e validato sul dataset open-source **EchoNet-Dyna
 
 L'ecocardiografia è la modalità di imaging più comune per valutare la funzionalità cardiaca. Il parametro chiave estratto è la **Frazione di Eiezione (EF)**, che indica la percentuale di sangue pompata fuori dal ventricolo a ogni battito.
 
-$$EF (\%) = \frac{EDV - ESV}{EDV} \times 100$$
+$$EF ( \% ) = \frac{EDV - ESV}{EDV} \times 100$$
 
 Dove:
 * **EDV (End-Diastolic Volume):** Volume massimo (cuore rilassato/pieno).
@@ -24,6 +24,7 @@ Un'accurata segmentazione del ventricolo sinistro è fondamentale per calcolare 
 
 ## ⚙️ Architettura Tecnica
 Il sistema segue una pipeline sequenziale divisa in 6 fasi logiche, come illustrato nel diagramma seguente:
+
 ```mermaid
 graph LR
     A[Input Video Echocardiogram] --> B(Preprocessing & Pulizia)
@@ -66,19 +67,17 @@ Poiché l'ecocardiografia contiene molte strutture in movimento, l'utente defini
 |------------------------------------------|--------------------------------------------|
 | ![Esempio Selezione ROI](assets/EDV.png) | ![Esempio Selezione ROI](./assets/ESV.png) |
 
-
-
 ### 4. Algoritmi di Segmentazione (Confronto)
 Il cuore del progetto confronta due approcci matematici distinti:
 * **Metodo A: Geodesic Active Contours (Snakes)**
-* *Tecnica:* Utilizza curve evolutive che minimizzano un'energia basata sul gradiente inverso dell'immagine. Include una forza "Balloon" per spingere i contorni verso i bordi.
-* *Pro:* Modella forme curve naturali e lisce.
-* *Contro:* Sensibile ai minimi locali (può bloccarsi su falsi bordi).
+  * *Tecnica:* Utilizza curve evolutive che minimizzano un'energia basata sul gradiente inverso dell'immagine. Include una forza "Balloon" per spingere i contorni verso i bordi.
+  * *Pro:* Modella forme curve naturali e lisce.
+  * *Contro:* Sensibile ai minimi locali (può bloccarsi su falsi bordi).
 
 
 * **Metodo B: Marker-Controlled Watershed**
-* *Tecnica:* Approccio morfologico basato sull'immersione. Utilizza la ROI erosa come "marker interno" e la ROI dilatata come "marker esterno".
-* *Pro:* Deterministico e molto robusto al rumore speckle. Evita il "leakage" (fuoriuscita del contorno) grazie ai marker.
+  * *Tecnica:* Approccio morfologico basato sull'immersione. Utilizza la ROI erosa come "marker interno" e la ROI dilatata come "marker esterno".
+  * *Pro:* Deterministico e molto robusto al rumore speckle. Evita il "leakage" (fuoriuscita del contorno) grazie ai marker.
 
 ### 5. Analisi Volumetrica e Clinica
 Una volta ottenute le maschere binarie:
@@ -182,8 +181,6 @@ flowchart TD
     style ANALISYS fill:#CE93D8,stroke:#4A148C,color:#000
 ```
 
----
-
 ## 📊 Validazione e Risultati
 
 Il sistema confronta i risultati ottenuti con il **Ground Truth** (tracciati manuali) fornito dal dataset EchoNet-Dynamic.
@@ -193,9 +190,8 @@ Le metriche di valutazione includono:
 2.  **Delta EF (Clinico):** Differenza assoluta tra l'EF calcolata dall'algoritmo e l'EF clinica riportata nel dataset.
 
 *Esempio di Output:*
-> **Watershed:** DICE Score ~0.80 (Alta affidabilità geometrica)
-> **Clinica:** Errore medio EF < 5% (Accettabile per screening)
-
+> - **Watershed:** DICE Score ~0.80 (Alta affidabilità geometrica)
+> - **Clinica:** Errore medio EF < 5% (Accettabile per screening)
 ---
 
 ## 🚀 Installazione e Utilizzo
