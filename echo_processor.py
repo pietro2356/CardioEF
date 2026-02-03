@@ -1,6 +1,5 @@
 import cv2
 
-
 class EchoPreprocessor:
     """
     Classe dedicata alla pulizia dell'immagine ecocardiografica.

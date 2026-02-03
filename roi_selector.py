@@ -1,7 +1,5 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
-
 
 class ROISelector:
     """
@@ -153,25 +151,3 @@ class PolygonROISelector:
         cv2.fillPoly(mask, [pts], 255)
 
         return mask, self.points
-
-
-# --- ESEMPIO DI UTILIZZO NEL VOSTRO MAIN ---
-"""
-if __name__ == "__main__":
-    # Assumiamo img_clean sia pronta
-    # img_clean = ... 
-
-    poly_selector = PolygonROISelector()
-
-    # Questa maschera ora ha forma IRREGOLARE (esatta selezione utente), non ellittica
-    initial_mask, points = poly_selector.select_and_mask(img_clean)
-
-    # Visualizza risultato
-    plt.imshow(initial_mask, cmap='gray')
-    plt.title("Maschera Poligonale Iniziale")
-    plt.show()
-
-    # PASSAGGIO SUCCESSIVO:
-    # Passate questa 'initial_mask' direttamente al metodo MorphGAC (SegmentatorGeodesic)
-    # Funzionerà MEGLIO dell'ellisse perché è già vicina alla forma reale.
-"""

@@ -1,7 +1,5 @@
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
-
 
 class SegmentatorWatershed:
     def __init__(self, erosion_iter=2, dilation_iter=2):
@@ -77,26 +75,3 @@ class SegmentatorWatershed:
         markers_vis[markers == 2] = [0, 255, 0]
 
         return final_mask, markers_vis
-
-
-# --- CODICE DI TEST (Da integrare nel MAIN) ---
-"""
-if __name__ == "__main__":
-    # Assumiamo di avere:
-    # img_clean (256x256)
-    # user_poly_mask (maschera nera con poligono bianco dell'utente)
-
-    seg_method_B = SegmentatorWatershed(erosion_iter=3, dilation_iter=3)
-
-    final_mask_ws, debug_img = seg_method_B.run(img_clean, user_poly_mask)
-
-    plt.figure(figsize=(10, 5))
-    plt.subplot(1, 2, 1)
-    plt.title("Maschera Utente")
-    plt.imshow(user_poly_mask, cmap='gray')
-
-    plt.subplot(1, 2, 2)
-    plt.title("Risultato Watershed (Verde=Ventricolo, Rosso=Bordo)")
-    plt.imshow(debug_img)
-    plt.show()
-"""

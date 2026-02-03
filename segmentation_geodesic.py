@@ -1,5 +1,3 @@
-import numpy as np
-import matplotlib.pyplot as plt
 from skimage.segmentation import morphological_geodesic_active_contour, inverse_gaussian_gradient
 from skimage import img_as_float
 
@@ -72,37 +70,3 @@ class SegmentatorGeodesic:
         )
 
         return final_level_set, gimage
-
-
-# --- CODICE DI TEST (Da integrare nel MAIN) ---
-"""
-# Esempio di integrazione nel flusso:
-
-# 1. Prendi l'immagine pre-processata (img_clean) e la maschera (initial_mask)
-#    dalle fasi precedenti.
-
-seg_method_A = SegmentatorGeodesic(iterations=300, smoothing=2, balloon=1)
-
-# Eseguiamo
-final_mask, gimage_debug = seg_method_A.run(img_clean, initial_mask)
-
-# Visualizzazione Risultati
-fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-
-# A. Immagine Originale con Contorno Iniziale (Verde)
-axes[0].imshow(img_clean, cmap="gray")
-axes[0].contour(initial_mask, [0.5], colors='g', linewidths=2)
-axes[0].set_title("Inizializzazione (Ellisse)")
-
-# B. Mappa dei Gradienti (Quello che vede l'algoritmo)
-axes[1].imshow(gimage_debug, cmap="plasma")
-axes[1].set_title("Mappa di Arresto (gimage)")
-# Nota: Le pareti del cuore dovrebbero essere scure (blu/viola) qui!
-
-# C. Risultato Finale (Rosso)
-axes[2].imshow(img_clean, cmap="gray")
-axes[2].contour(final_mask, [0.5], colors='r', linewidths=2)
-axes[2].set_title("Segmentazione Finale (MorphGAC)")
-
-plt.show()
-"""

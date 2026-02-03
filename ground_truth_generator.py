@@ -3,7 +3,6 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
-
 def get_ground_truth_masks(csv_path, filename, original_shape, target_shape):
     """
     Legge VolumeTracings.csv e restituisce le maschere binarie per i frame annotati.
@@ -70,29 +69,3 @@ def get_ground_truth_masks(csv_path, filename, original_shape, target_shape):
         masks[frame_idx] = mask
 
     return masks
-
-
-# --- ESEMPIO DI UTILIZZO NEL MAIN ---
-if __name__ == "__main__":
-    # Parametri
-    TRACINGS_CSV = "./EchoNet-Dynamic/VolumeTracings.csv"
-    TEST_FILENAME = "0X100CF05D141FF143.avi"  # File del tuo esempio
-
-    # Generiamo le maschere vere
-    gt_masks = get_ground_truth_masks(
-        TRACINGS_CSV,
-        TEST_FILENAME,
-        original_shape=(112, 112),
-        target_shape=(256, 256)
-    )
-
-    print(f"Frame trovati con annotazioni: {list(gt_masks.keys())}")
-
-    # Visualizziamo
-    if gt_masks:
-        frame_id = list(gt_masks.keys())[0]  # Prendiamo il primo frame (es. 46)
-
-        plt.figure(figsize=(6, 6))
-        plt.title(f"Ground Truth ricostruito (Frame {frame_id})")
-        plt.imshow(gt_masks[frame_id], cmap='gray')
-        plt.show()
